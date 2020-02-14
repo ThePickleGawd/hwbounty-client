@@ -1,56 +1,56 @@
-import React, { Component, Fragment } from "react";
-import PropTypes from "prop-types";
-import withStyles from "@material-ui/core/styles/withStyles";
-import { Link } from "react-router-dom";
-import dayjs from "dayjs";
+import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
+import withStyles from '@material-ui/core/styles/withStyles';
+import { Link } from 'react-router-dom';
+import dayjs from 'dayjs';
 
 // MUI stuff
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import MuiLink from "@material-ui/core/Link";
-import Paper from "@material-ui/core/Paper";
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import MuiLink from '@material-ui/core/Link';
+import Paper from '@material-ui/core/Paper';
 
 // Icons
-import LocationOn from "@material-ui/icons/LocationOn";
-import LinkIcon from "@material-ui/icons/Link";
-import CalendarToday from "@material-ui/icons/CalendarToday";
+import LocationOn from '@material-ui/icons/LocationOn';
+import LinkIcon from '@material-ui/icons/Link';
+import CalendarToday from '@material-ui/icons/CalendarToday';
 
 // Redux
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
 const styles = theme => ({
-  "& .image-wrapper": {
-    textAlign: "center",
-    position: "relative",
-    "& button": {
-      position: "absolute",
-      top: "80%",
-      left: "70%"
+  '& .image-wrapper': {
+    textAlign: 'center',
+    position: 'relative',
+    '& button': {
+      position: 'absolute',
+      top: '80%',
+      left: '70%'
     }
   },
-  "& .profile-image": {
+  '& .profile-image': {
     width: 200,
     height: 200,
-    objectFit: "cover",
-    maxWidth: "100%",
-    borderRadius: "50%"
+    objectFit: 'cover',
+    maxWidth: '100%',
+    borderRadius: '50%'
   },
-  "& .profile-details": {
-    textAlign: "center",
-    "& span, svg": {
-      verticalAlign: "middle"
+  '& .profile-details': {
+    textAlign: 'center',
+    '& span, svg': {
+      verticalAlign: 'middle'
     },
-    "& a": {
-      color: "#00bcd4"
+    '& a': {
+      color: '#00bcd4'
     }
   },
-  "& hr": {
-    border: "none",
-    margin: "0 0 10px 0"
+  '& hr': {
+    border: 'none',
+    margin: '0 0 10px 0'
   },
-  "& svg.button": {
-    "&:hover": {
-      cursor: "pointer"
+  '& svg.button': {
+    '&:hover': {
+      cursor: 'pointer'
     }
   }
 });
@@ -70,61 +70,61 @@ export class Profile extends Component {
       authenticated ? (
         <Paper className={classes.paper}>
           <div className={classes.profile}>
-            <div className="profile-image">
-              <img src={imageUrl} alt="Profile" />
+            <div className='image-wrapper'>
+              <img src={imageUrl} alt='Profile' className='profile-image' />
             </div>
             <hr />
-            <div className="profile-details">
+            <div className='profile-details'>
               <MuiLink
                 component={Link}
                 to={`/users/${handle}`}
-                color="primary"
-                variant="h5"
+                color='primary'
+                variant='h5'
               >
                 @{handle}
               </MuiLink>
               <hr />
-              {bio && <Typography variant="body2">{bio}</Typography>}
+              {bio && <Typography variant='body2'>{bio}</Typography>}
               <hr />
               {location && (
                 <Fragment>
-                  <LocationOn color="primary" /> <span>{location}</span>
+                  <LocationOn color='primary' /> <span>{location}</span>
                 </Fragment>
               )}
               {website && (
                 <Fragment>
-                  <LinkIcon color="primary" />
-                  <a href={website} target="_blank" rel="noopener noreferrer">
-                    {" "}
+                  <LinkIcon color='primary' />
+                  <a href={website} target='_blank' rel='noopener noreferrer'>
+                    {' '}
                     {website}
                   </a>
                   <hr />
                 </Fragment>
               )}
-              <CalendarToday color="primary" />
-              <span>Joined {dayjs(createdAt.format("MMM YYYY"))}</span>
+              <CalendarToday color='primary' />
+              <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>
             </div>
           </div>
         </Paper>
       ) : (
         <Paper className={classes.paper}>
-          <Typography variant="body2" align="center">
+          <Typography variant='body2' align='center'>
             No profile found, please login again
           </Typography>
           <div className={classes.buttons}>
             <Button
-              variant="contained"
-              color="primary"
+              variant='contained'
+              color='primary'
               component={Link}
-              to="/login"
+              to='/login'
             >
               Login
             </Button>
             <Button
-              variant="contained"
-              color="primary"
+              variant='contained'
+              color='primary'
               component={Link}
-              to="/signup"
+              to='/signup'
             >
               Signup
             </Button>

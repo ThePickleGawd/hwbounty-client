@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import axios from "axios";
-import Grid from "@material-ui/core/Grid";
+import React, { Component } from 'react';
+import axios from 'axios';
+import Grid from '@material-ui/core/Grid';
 
-import Bounty from "../components/Bounty";
-import Profile from "../components/Profile";
+import Bounty from '../components/Bounty';
+import Profile from '../components/Profile';
 
 export class home extends Component {
   state = {
@@ -12,7 +12,7 @@ export class home extends Component {
 
   componentDidMount() {
     axios
-      .get("/bounties")
+      .get('/bounties')
       .then(res => {
         this.setState({ bounties: res.data });
       })

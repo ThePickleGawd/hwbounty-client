@@ -5,18 +5,18 @@ import {
   LOADING_UI,
   SET_UNAUTHENTICATED,
   LOADING_USER
-} from "../types";
-import axios from "axios";
+} from '../types';
+import axios from 'axios';
 
 export const loginUser = (userData, history) => dispatch => {
   dispatch({ type: LOADING_UI });
   axios
-    .post("/login", userData)
+    .post('/login', userData)
     .then(res => {
       setAuthorizationHeader(res.data.token);
       dispatch(getUserData());
       dispatch({ type: CLEAR_ERRORS });
-      history.push("/");
+      history.push('/');
     })
     .catch(err => {
       dispatch({
@@ -28,20 +28,20 @@ export const loginUser = (userData, history) => dispatch => {
 };
 
 export const logoutUser = () => dispatch => {
-  localStorage.removeItem("FBIdToken");
-  delete axios.defaults.headers.common["Authorization"];
+  localStorage.removeItem('FBIdToken');
+  delete axios.defaults.headers.common['Authorization'];
   dispatch({ type: SET_UNAUTHENTICATED });
 };
 
-export const signupUser = (newuserData, history) => dispatch => {
+export const signupUser = (newUserData, history) => dispatch => {
   dispatch({ type: LOADING_UI });
   axios
-    .post("/signup", newuserData)
+    .post('/signup', newUserData)
     .then(res => {
       setAuthorizationHeader(res.data.token);
       dispatch(getUserData());
       dispatch({ type: CLEAR_ERRORS });
-      history.push("/");
+      history.push('/');
     })
     .catch(err => {
       dispatch({
@@ -55,7 +55,7 @@ export const signupUser = (newuserData, history) => dispatch => {
 export const getUserData = () => dispatch => {
   dispatch({ type: LOADING_USER });
   axios
-    .get("/user")
+    .get('/user')
     .then(res => {
       dispatch({
         type: SET_USER,
@@ -67,6 +67,6 @@ export const getUserData = () => dispatch => {
 
 const setAuthorizationHeader = token => {
   const FBIdToken = `Bearer ${token}`;
-  localStorage.setItem("FBIdToken", FBIdToken);
-  axios.defaults.headers.common["Authorization"] = FBIdToken;
+  localStorage.setItem('FBIdToken', FBIdToken);
+  axios.defaults.headers.common['Authorization'] = FBIdToken;
 };

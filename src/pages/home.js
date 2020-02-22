@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
+import PropTypes from 'prop-types';
 
 import Bounty from '../components/Bounty';
 import Profile from '../components/Profile';
+
+import { connect } from 'react-redux';
+import { getBounties } from '../redux/actions/dataActions';
 
 export class home extends Component {
   state = {
@@ -11,18 +15,12 @@ export class home extends Component {
   };
 
   componentDidMount() {
-    axios
-      .get('/bounties')
-      .then(res => {
-        this.setState({ bounties: res.data });
-      })
-      .catch(err => console.log(err));
+    this.props.getBounties();
   }
   render() {
-    let recentBountiesMarkup = this.state.bounties ? (
-      this.state.bounties.map(bounty => (
-        <Bounty key={bounty.bountyId} bounty={bounty} />
-      ))
+    const { bounties, loading } = this.props.data;
+    let recentBountiesMarkup = !loading ? (
+      bounties.map(bounty => <Bounty key={bounty.bountyId} bounty={bounty} />)
     ) : (
       <p>Loading...</p>
     );
@@ -32,11 +30,20 @@ export class home extends Component {
           {recentBountiesMarkup}
         </Grid>
         <Grid item sm={4} xs={12}>
-          <Profile></Profile>
+          <Profile />
         </Grid>
       </Grid>
     );
   }
 }
 
-export default home;
+home.propTypes = {
+  getBounties: PropTypes.func.isRequired,
+  data: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  data: state.data
+});
+
+export default connect(mapStateToProps, { getBounties })(home);

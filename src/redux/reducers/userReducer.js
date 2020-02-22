@@ -2,7 +2,9 @@ import {
   SET_USER,
   SET_AUTHENTICATED,
   SET_UNAUTHENTICATED,
-  LOADING_USER
+  LOADING_USER,
+  LIKE_BOUNTY,
+  UNLIKE_BOUNTY
 } from '../types';
 
 const initialState = {
@@ -32,6 +34,24 @@ export default function(state = initialState, action) {
       return {
         ...state,
         loading: true
+      };
+    case LIKE_BOUNTY:
+      return {
+        ...state,
+        likes: [
+          ...state.likes,
+          {
+            userHandle: state.credentials.handle,
+            bountyId: action.payload.bountyId
+          }
+        ]
+      };
+    case UNLIKE_BOUNTY:
+      return {
+        ...state,
+        likes: state.likes.filter(
+          like => like.bountyId !== action.payload.bountyId
+        )
       };
     default:
       return state;

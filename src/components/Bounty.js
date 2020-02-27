@@ -24,6 +24,7 @@ import { likeBounty, unlikeBounty } from '../redux/actions/dataActions';
 
 const styles = {
   card: {
+    position: 'relative',
     display: 'flex',
     marginBottom: 20
   },

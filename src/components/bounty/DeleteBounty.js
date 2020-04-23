@@ -1,29 +1,29 @@
-import React, { Component, Fragment } from 'react';
-import withStyles from '@material-ui/core/styles/withStyles';
-import PropTypes from 'prop-types';
-import MyButton from '../util/MyButton';
+import React, { Component, Fragment } from "react";
+import withStyles from "@material-ui/core/styles/withStyles";
+import PropTypes from "prop-types";
+import MyButton from "../../util/MyButton";
 
 // MUI stuff
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogActions from '@material-ui/core/DialogActions';
-import DeleteOutline from '@material-ui/icons/DeleteOutline';
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogActions from "@material-ui/core/DialogActions";
+import DeleteOutline from "@material-ui/icons/DeleteOutline";
 
-import { connect } from 'react-redux';
-import { deleteBounty } from '../redux/actions/dataActions';
+import { connect } from "react-redux";
+import { deleteBounty } from "../../redux/actions/dataActions";
 
 const styles = {
   deleteButton: {
-    position: 'absolute',
-    left: '90%',
-    top: '10%'
-  }
+    position: "absolute",
+    left: "90%",
+    top: "10%",
+  },
 };
 
 class DeleteBounty extends Component {
   state = {
-    open: false
+    open: false,
   };
   handleOpen = () => {
     this.setState({ open: true });
@@ -42,26 +42,26 @@ class DeleteBounty extends Component {
     return (
       <Fragment>
         <MyButton
-          tip='Delete Bounty'
+          tip="Delete Bounty"
           onClick={this.handleOpen}
           btnClassName={classes.deleteButton}
         >
-          <DeleteOutline color='secondary' />
+          <DeleteOutline color="secondary" />
         </MyButton>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
           fullWidth
-          maxWidth='sm'
+          maxWidth="sm"
         >
           <DialogTitle>
             Are you sure you want to delete this Bounty? (This cannot be undone)
           </DialogTitle>
           <DialogActions>
-            <Button onClick={this.handleClose} color='primary'>
+            <Button onClick={this.handleClose} color="primary">
               Cancel
             </Button>
-            <Button onClick={this.deleteBounty} color='secondary'>
+            <Button onClick={this.deleteBounty} color="secondary">
               Delete
             </Button>
           </DialogActions>
@@ -74,7 +74,7 @@ class DeleteBounty extends Component {
 DeleteBounty.propTypes = {
   deleteBounty: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
-  bountyId: PropTypes.string.isRequired
+  bountyId: PropTypes.string.isRequired,
 };
 
 export default connect(null, { deleteBounty })(

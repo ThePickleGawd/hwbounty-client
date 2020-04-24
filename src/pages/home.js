@@ -5,6 +5,9 @@ import PropTypes from "prop-types";
 import Bounty from "../components/bounty/Bounty";
 import Profile from "../components/profile/Profile";
 
+import BountySkeleton from "../util/BountySkeleton";
+import ProfileSkeleton from "../util/ProfileSkeleton";
+
 import { connect } from "react-redux";
 import { getBounties } from "../redux/actions/dataActions";
 
@@ -21,7 +24,7 @@ export class home extends Component {
     let recentBountiesMarkup = !loading ? (
       bounties.map((bounty) => <Bounty key={bounty.bountyId} bounty={bounty} />)
     ) : (
-      <p>Loading...</p>
+      <BountySkeleton />
     );
     return (
       <Grid container spacing={10}>

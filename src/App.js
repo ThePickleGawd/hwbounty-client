@@ -26,6 +26,8 @@ import axios from "axios";
 //TODO: make it yellow or red or dark blue?
 const theme = createMuiTheme(themeFile);
 
+axios.defaults.baseURL = "https://us-central1-hwbounty.cloudfunctions.net/api";
+
 const token = localStorage.FBIdToken;
 if (token) {
   const decodedToken = jwtDecode(token);

@@ -5,6 +5,9 @@ import Bounty from "../components/bounty/Bounty";
 import Grid from "@material-ui/core/Grid";
 import StaticProfile from "../components/profile/StaticProfile";
 
+import BountySkeleton from "../util/BountySkeleton";
+import ProfileSkeleton from "../util/ProfileSkeleton";
+
 import { connect } from "react-redux";
 import { getUserData } from "../redux/actions/dataActions";
 
@@ -33,7 +36,7 @@ class user extends Component {
     const { bountyIdParam } = this.state;
 
     const bountiesMarkup = loading ? (
-      <p>Loading Data...</p>
+      <BountySkeleton />
     ) : bounties === null ? (
       <p>No Bounties from this user</p>
     ) : !bountyIdParam ? (
@@ -52,7 +55,7 @@ class user extends Component {
         </Grid>
         <Grid item sm={4} xs={12}>
           {this.state.profile === null ? (
-            <p>Loading profile...</p>
+            <ProfileSkeleton />
           ) : (
             <StaticProfile profile={this.state.profile} />
           )}

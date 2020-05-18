@@ -6,7 +6,6 @@ import Bounty from "../components/bounty/Bounty";
 import Profile from "../components/profile/Profile";
 
 import BountySkeleton from "../util/BountySkeleton";
-import ProfileSkeleton from "../util/ProfileSkeleton";
 
 import { connect } from "react-redux";
 import { getBounties } from "../redux/actions/dataActions";

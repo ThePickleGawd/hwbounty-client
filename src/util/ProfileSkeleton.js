@@ -25,11 +25,11 @@ const styles = (theme) => ({
     width: "100%",
     marginBottom: 10,
   },
-  halfLine: {
+  quarterLine: {
     height: 15,
-    backgroundColor: "rgba(0,0,0,0.6)",
-    width: "50%",
-    marginBottom: 10,
+    backgroundColor: "rgba(255,215,0, 1)",
+    width: "25%",
+    margin: "0 auto 7px auto",
   },
 });
 
@@ -47,6 +47,8 @@ const ProfileSkeleton = (props) => {
           <hr />
           <div className={classes.fullLine} />
           <div className={classes.fullLine} />
+          <hr />
+          <div className={classes.quarterLine} />
           <hr />
           <LocationOn color="primary" /> <span>Location</span>
           <hr />

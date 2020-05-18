@@ -21,7 +21,7 @@ const styles = (theme) => ({
 const StaticProfile = (props) => {
   const {
     classes,
-    profile: { handle, createdAt, imageUrl, bio, website, location },
+    profile: { handle, createdAt, imageUrl, bio, website, location, points },
   } = props;
 
   return (
@@ -42,6 +42,8 @@ const StaticProfile = (props) => {
           </MuiLink>
           <hr />
           {bio && <Typography variant="body2">{bio}</Typography>}
+          <hr />
+          <b className={classes.points}>{points} Points</b>
           <hr />
           {location && (
             <Fragment>

@@ -8,6 +8,7 @@ import MyButton from "../../util/MyButton";
 import DeleteBounty from "./DeleteBounty";
 import BountyDialog from "./BountyDialog";
 import LikeButton from "./LikeButton";
+import BountyReward from "./BountyReward";
 
 // MUI Stuff
 import Card from "@material-ui/core/Card";
@@ -34,6 +35,7 @@ const styles = {
     padding: 25,
     objectFit: "cover",
   },
+  pointBounty: {},
 };
 
 class Bounty extends Component {
@@ -49,6 +51,8 @@ class Bounty extends Component {
         bountyId,
         likeCount,
         commentCount,
+        pointReward,
+        claimed,
       },
       user: {
         authenticated,
@@ -68,19 +72,26 @@ class Bounty extends Component {
           className={classes.image}
         />
         <CardContent className={classes.content}>
-          <Typography
-            variant="h5"
-            component={Link}
-            to={`/users/${userHandle}`}
-            color="primary"
-          >
-            {userHandle}
-          </Typography>
+          <div style={{ display: "flex" }}>
+            <Typography
+              variant="h5"
+              component={Link}
+              to={`/users/${userHandle}`}
+              color="primary"
+            >
+              {userHandle}
+            </Typography>
+            <BountyReward pointReward={pointReward} claimed={claimed} />
+          </div>
           {deleteButton}
           <Typography variant="body2" color="textSecondary">
             {dayjs(createdAt).fromNow()}
           </Typography>
-          <Typography variant="body1">{body}</Typography>
+          <Typography variant="body1">
+            {" "}
+            {/*This is were to put the no wrap if needed...*/}
+            {body}
+          </Typography>
           <LikeButton bountyId={bountyId} />
           <span>{likeCount} Likes</span>
           <MyButton tip="comments">

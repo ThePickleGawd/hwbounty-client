@@ -14,7 +14,7 @@ import { getUserData } from "../redux/actions/dataActions";
 class user extends Component {
   state = {
     profile: null,
-    bountyIdPaid: null,
+    bountyIdParam: null,
   };
 
   componentDidMount() {
@@ -43,6 +43,7 @@ class user extends Component {
       bounties.map((bounty) => <Bounty key={bounty.bountyId} bounty={bounty} />)
     ) : (
       bounties.map((bounty) => {
+        // eslint-disable-next-line
         if (bounty.bountyId !== bountyIdParam) return;
         else return <Bounty key={bounty.bountyId} bounty={bounty} openDialog />;
       })

@@ -20,7 +20,9 @@ import CloseIcon from "@material-ui/icons/Close";
 const styles = (theme) => ({
   ...theme.spreadIt,
   submitButton: {
-    position: "relative",
+    position: "absolute",
+    right: "82%",
+    bottom: "10%",
   },
   progressSpinner: {
     position: "absolute",
@@ -30,12 +32,20 @@ const styles = (theme) => ({
     left: "90%",
     top: "10%",
   },
+  pointReward: {
+    position: "relative",
+    left: "75%",
+    marginBottom: "10px",
+    width: "25%",
+    size: "small",
+  },
 });
 
 class PostBounty extends Component {
   state = {
     open: false,
     body: "",
+    pointReward: null,
     errors: {},
   };
   componentWillReceiveProps(nextProps) {
@@ -47,6 +57,9 @@ class PostBounty extends Component {
       this.handleClose();
     }
   }
+  handleBountyChange = (event) => {
+    this.setState({ [event.target.name]: parseInt(event.target.value) });
+  };
   handleOpen = () => {
     this.setState({ open: true });
   };
@@ -58,7 +71,10 @@ class PostBounty extends Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.postBounty({ body: this.state.body });
+    this.props.postBounty({
+      body: this.state.body,
+      pointReward: this.state.pointReward,
+    });
   };
   render() {
     const { errors } = this.state;
@@ -92,7 +108,7 @@ class PostBounty extends Component {
                 type="text"
                 label="Post!"
                 multiline
-                rows="3"
+                rows="2"
                 placeholder="Post your problem or question here..."
                 error={errors.body ? true : false}
                 helperText={errors.body}
@@ -100,21 +116,35 @@ class PostBounty extends Component {
                 onChange={this.handleChange}
                 fullWidth
               />
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                className={classes.submitButton}
-                disabled={loading}
-              >
-                Submit
-                {loading && (
-                  <CircularProgress
-                    size={30}
-                    className={classes.progressSpinner}
-                  />
-                )}
-              </Button>
+              <div style={{ marginTop: "30px" }}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  className={classes.submitButton}
+                  disabled={loading}
+                >
+                  Submit
+                  {loading && (
+                    <CircularProgress
+                      size={30}
+                      className={classes.progressSpinner}
+                    />
+                  )}
+                </Button>
+                <TextField
+                  name="pointReward"
+                  id="pointReward"
+                  type="number"
+                  label="Bounty"
+                  variant="outlined"
+                  error={errors.pointReward ? true : false}
+                  helperText={errors.pointReward}
+                  className={classes.pointReward}
+                  onChange={this.handleBountyChange}
+                  InputLabelProps={{ shrink: true }}
+                />
+              </div>
             </form>
           </DialogContent>
         </Dialog>

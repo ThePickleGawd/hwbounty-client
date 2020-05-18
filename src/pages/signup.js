@@ -15,8 +15,8 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { connect } from "react-redux";
 import { signupUser } from "../redux/actions/userActions";
 
-const styles = theme => ({
-  ...theme.spreadIt
+const styles = (theme) => ({
+  ...theme.spreadIt,
 });
 
 export class signup extends Component {
@@ -27,7 +27,7 @@ export class signup extends Component {
       password: "",
       confirmPassword: "",
       handle: "",
-      errors: {}
+      errors: {},
     };
   }
   componentWillReceiveProps(nextProps) {
@@ -35,28 +35,28 @@ export class signup extends Component {
       this.setState({ errors: nextProps.UI.errors });
     }
   }
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
     this.setState({
-      loading: true
+      loading: true,
     });
     const newUserData = {
       email: this.state.email,
       password: this.state.password,
       confirmPassword: this.state.confirmPassword,
-      handle: this.state.handle
+      handle: this.state.handle,
     };
     this.props.signupUser(newUserData, this.props.history);
   };
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
   render() {
     const {
       classes,
-      UI: { loading }
+      UI: { loading },
     } = this.props;
     const { errors } = this.state;
     return (
@@ -108,7 +108,7 @@ export class signup extends Component {
               id="handle"
               name="handle"
               type="text"
-              label="Handle"
+              label="Handle (Username)"
               className={classes.textField}
               helperText={errors.handle}
               error={errors.handle ? true : false}
@@ -149,12 +149,12 @@ signup.propTypes = {
   classes: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
   UI: PropTypes.object.isRequired,
-  logoutUser: PropTypes.func.isRequired
+  logoutUser: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.user,
-  UI: state.UI
+  UI: state.UI,
 });
 
 export default connect(mapStateToProps, { signupUser })(

@@ -46,10 +46,10 @@ export default function (state = initialState, action) {
         ...state,
       };
     case DELETE_BOUNTY:
-      index = state.bounties.findIndex(
+      let deleteIndex = state.bounties.findIndex(
         (bounty) => bounty.bountyId === action.payload
       );
-      state.bounties.splice(index, 1);
+      state.bounties.splice(deleteIndex, 1);
       return {
         ...state,
       };

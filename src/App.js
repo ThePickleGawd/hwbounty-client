@@ -21,6 +21,8 @@ import home from "./pages/home";
 import login from "./pages/login";
 import signup from "./pages/signup";
 import user from "./pages/user";
+import about from "./pages/about";
+
 import axios from "axios";
 
 //TODO: make it yellow or red or dark blue?
@@ -43,28 +45,44 @@ if (token) {
 }
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { color: "#DAE0E6" };
+  }
+
+  changeBackgroundColor = (color) => {
+    console.log(color);
+    this.setState({ color });
+  };
+
   render() {
     return (
-      <MuiThemeProvider theme={theme}>
-        <Provider store={store}>
-          <Router>
-            <Navbar />
-            <div className="container">
-              <Switch>
-                <Route exact path="/" component={home} />
-                <AuthRoute exact path="/login" component={login} />
-                <AuthRoute exact path="/signup" component={signup} />
-                <Route exact path="/users/:handle" component={user} />
-                <Route
-                  exact
-                  path="/users/:handle/bounty/:bountyId"
-                  component={user}
-                />
-              </Switch>
-            </div>
-          </Router>
-        </Provider>
-      </MuiThemeProvider>
+      <div
+        className="main-background"
+        style={{ backgroundColor: this.state.color }}
+      >
+        <MuiThemeProvider theme={theme}>
+          <Provider store={store}>
+            <Router>
+              <Navbar />
+              <Route exact path="/about" component={about} />
+              <div className="container">
+                <Switch>
+                  <Route exact path="/" component={home} />
+                  <AuthRoute exact path="/login" component={login} />
+                  <AuthRoute exact path="/signup" component={signup} />
+                  <Route exact path="/users/:handle" component={user} />
+                  <Route
+                    exact
+                    path="/users/:handle/bounty/:bountyId"
+                    component={user}
+                  />
+                </Switch>
+              </div>
+            </Router>
+          </Provider>
+        </MuiThemeProvider>
+      </div>
     );
   }
 }

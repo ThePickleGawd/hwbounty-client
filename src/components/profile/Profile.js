@@ -49,7 +49,15 @@ class Profile extends Component {
     const {
       classes,
       user: {
-        credentials: { handle, createdAt, imageUrl, bio, website, location },
+        credentials: {
+          handle,
+          createdAt,
+          imageUrl,
+          bio,
+          website,
+          location,
+          points,
+        },
         loading,
         authenticated,
       },
@@ -87,6 +95,8 @@ class Profile extends Component {
               </MuiLink>
               <hr />
               {bio && <Typography variant="body2">{bio}</Typography>}
+              <hr />
+              <b className={classes.points}>{points} Points</b>
               <hr />
               {location && (
                 <Fragment>

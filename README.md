@@ -1,4 +1,7 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# hwbounty-client
+Front-end for <https://hwbounty.web.app/>
+
+HW Bounty is a social website to help students across the world with school or homework related questions. Remember, there are no stupid questions!
 
 ## Available Scripts
 
